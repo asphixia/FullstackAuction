@@ -11,9 +11,9 @@ const categorySchema = new mongoose.Schema<ICategory>(
         type: String, 
         required: true
     },
-    items: [{
+    auctions: [{
         type: mongoose.Schema.Types.ObjectId, 
-        ref: "Item"
+        ref: "Auction"
     }]
     }
 );

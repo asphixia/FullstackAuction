@@ -1,4 +1,4 @@
-import { ObjectId } from "mongodb";
+import { ObjectId, Document } from "mongodb";
 
 
 export enum Role {
@@ -6,64 +6,36 @@ export enum Role {
     USER = "user"
 }
 
-export interface IUser {
+export interface IUser extends Document {
     _id: ObjectId;
     username: string;
     password: string;
-    role: Role
+    role: Role;
+    auctionsSelling: IAuction[];
 }
-export interface IUserWithItems extends IUser {
-    items: IItem[];
 
-}
-export interface IAuction {
+
+
+export interface IAuction extends Document {
     _id: ObjectId;
     title: string;
     description: string;
-    startDate: string;
-    endDate: string;
+    seller: IUser;
+    startDate: Date;
+    endDate: Date;
     startingBid: number;
     currentBid: number;
-    user: ObjectId;
-    bids: ObjectId[];
-    comments: ObjectId[];
-    item: ObjectId;
-
+    currentBidder: IUser;
+    imageUrl: string;
+    category: ICategory;
+    auctionFinished: boolean;
 }
 
-export interface IItem {
+export interface ICategory extends Document {
     _id: ObjectId;
     name: string;
     description: string;
-    price: number;
-    category: ObjectId;
-    user: ObjectId;
+    auctions: IAuction[];
 }
 
-export interface ICategory {
-    _id: ObjectId;
-    name: string;
-    description: string;
-    items: ObjectId[];
-}
-export interface IBid {
-    _id: ObjectId;
-    amount: number;
-    user: ObjectId;
-    item: ObjectId;
-}
-export interface IComment {
-    _id: ObjectId;
-    content: string;
-    user: ObjectId;
-    item: ObjectId;
-}
 
-export interface ITransaction {
-    _id: ObjectId;
-    buyer: ObjectId;
-    seller: ObjectId;
-    item: ObjectId;
-    finalPrice: number;
-    transactionDate: Date;
-}

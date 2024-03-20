@@ -1,14 +1,34 @@
+// LoginPage.tsx
 import React, { useState } from 'react';
+import { useMutation } from '@apollo/client';
+import { useNavigate } from 'react-router-dom';
+import { LOGIN } from '../graphql/userGQL';
 
-const LoginForm: React.FC = () => {
+const LoginPage: React.FC = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
-  const handleSubmit = (event: React.FormEvent) => {
-    event.preventDefault();
-    // Handle login logic here
-    console.log(`Logging in with username: ${username} and password: ${password}`);
+  const [login, { loading, error }] = useMutation(LOGIN, {
+    onCompleted: ({ login }) => {
+      if (login) {
+        localStorage.setItem('token', login.token); // Store token in localStorage
+        navigate('/frontpage'); // Redirect to front page
+      }
+    },
+  });
+
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault(); // Prevent page refresh
+    try {
+      await login({ variables: { username, password } });
+    } catch (err) {
+      console.error(err);
+    }
   };
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error :</p>;
 
   return (
     <form onSubmit={handleSubmit}>
@@ -25,4 +45,4 @@ const LoginForm: React.FC = () => {
   );
 };
 
-export default LoginForm;
+export default LoginPage;

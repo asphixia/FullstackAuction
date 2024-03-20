@@ -4,17 +4,17 @@ import { Role } from '../types/types';
 export const userData = [
     {
         _id: new ObjectId(),
-        username: "admin",
+        username: "pelle",
         password: "1234",
-        role: Role.ADMIN,
+        role: Role.USER,
         auctionsSelling: []
     },
 
     {
         _id: new ObjectId(),
-        username: "william",
+        username: "admin",
         password: "1234",
-        role: Role.USER,
+        role: Role.ADMIN,
         auctionsSelling: []
     }, 
 
@@ -83,8 +83,6 @@ export const categoryData = [
 
 ];
 
-
-// i need to make data for the auctions as well the current bidder shoud be null or some sort because no one has bit yet. please make all dates to the futture so that the auctions are not finished. we are in apris 2024,  and current bid shoudl be null as well because sometime bid goes lovwe that starting bid. and can you make 50 auctions in total, 10 in each category. use europen time for the date, dont use that weird time format. are you stupid dont use that weird time.
 export const auctionData = [
     {
         _id: new ObjectId(),
@@ -94,13 +92,12 @@ export const auctionData = [
         startDate: new Date('2024-04-01T12:00:00'),
         endDate: new Date('2024-04-30T12:00:00'),
         startingBid: 1000,
-        currentBid: null,
+        currentBid: 0,
         currentBidder: null,
-        imageUrl: "https://www.apple.com/v/mac/home/ab/images/familybrowser/macbookpro__fjvf3k6hwd6u_large.jpg",
+        imageUrl: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1026&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", 
         category: categoryData[0],
         auctionFinished: false
     },
-
     {
         _id: new ObjectId(),
         title: "Iphone 12",
@@ -109,13 +106,12 @@ export const auctionData = [
         startDate: new Date('2024-04-01T12:00:00'),
         endDate: new Date('2024-04-30T12:00:00'),
         startingBid: 800,
-        currentBid: null,
+        currentBid: 0,
         currentBidder: null,
-        imageUrl: "https://www.apple.com/v/iphone/home/ab/images/chapternav/iphone_12_pro_dark__fjxu5x4b5l6q_large.jpg",
+        imageUrl: "https://images.unsplash.com/photo-1607936854279-55e8a4c64888?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", 
         category: categoryData[0],
         auctionFinished: false
     },
-
     {
         _id: new ObjectId(),
         title: "Samsung Galaxy S21",
@@ -124,13 +120,12 @@ export const auctionData = [
         startDate: new Date('2024-04-01T12:00:00'),
         endDate: new Date('2024-04-30T12:00:00'),
         startingBid: 700,
-        currentBid: null,
+        currentBid: 0,
         currentBidder: null,
-        imageUrl: "https://www.samsung.com/se/smartphones/galaxy-s21-5g/buy/hero-1-desktop.jpg",
+        imageUrl: "https://images.unsplash.com/photo-1618478594486-c65b899c4936?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         category: categoryData[0],
         auctionFinished: false
     },
-
     {
         _id: new ObjectId(),
         title: "Sony WH-1000XM4",
@@ -139,13 +134,12 @@ export const auctionData = [
         startDate: new Date('2024-04-01T12:00:00'),
         endDate: new Date('2024-04-30T12:00:00'),
         startingBid: 300,
-        currentBid: null,
+        currentBid: 0,
         currentBidder: null,
-        imageUrl: "https://www.sony.com/electronics/headband-headphones/wh-1000xm4",
+        imageUrl: "https://images.unsplash.com/photo-1594075410664-00e61ae442dc?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", 
         category: categoryData[0],
         auctionFinished: false
     },
-
     {
         _id: new ObjectId(),
         title: "Rolex Submariner",
@@ -154,9 +148,9 @@ export const auctionData = [
         startDate: new Date('2024-04-01T12:00:00'),
         endDate: new Date('2024-04-30T12:00:00'),
         startingBid: 10000,
-        currentBid: null,
+        currentBid: 0,
         currentBidder: null,
-        imageUrl: "https://www.rolex.com/watches/submariner/m126610lv-0002.html",
+        imageUrl: "https://images.unsplash.com/photo-1639006570490-79c0c53f1080?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", 
         category: categoryData[1],
         auctionFinished: false
     },
@@ -169,13 +163,12 @@ export const auctionData = [
         startDate: new Date('2024-04-01T12:00:00'),
         endDate: new Date('2024-04-30T12:00:00'),
         startingBid: 5000,
-        currentBid: null,
+        currentBid: 0,
         currentBidder: null,
-        imageUrl: "https://www.tiffany.com/jewelry/necklaces-pendants/tiffany-t-wire-necklace-GRP09923/",
+        imageUrl: "https://plus.unsplash.com/premium_photo-1678730056371-eff9c5356a48?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         category: categoryData[1],
         auctionFinished: false
     },
-
     {
         _id: new ObjectId(),
         title: "Diamond ring",
@@ -184,13 +177,12 @@ export const auctionData = [
         startDate: new Date('2024-04-01T12:00:00'),
         endDate: new Date('2024-04-30T12:00:00'),
         startingBid: 3000,
-        currentBid: null,
+        currentBid: 0,
         currentBidder: null,
-        imageUrl: "https://www.tiffany.com/jewelry/rings/tiffany-soleste-v-ring-GRP09923/",
+        imageUrl: "https://images.unsplash.com/photo-1589674668791-4889d2bba4c6?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         category: categoryData[1],
         auctionFinished: false
     },
-
     {
         _id: new ObjectId(),
         title: "Diamond earrings",
@@ -199,13 +191,12 @@ export const auctionData = [
         startDate: new Date('2024-04-01T12:00:00'),
         endDate: new Date('2024-04-30T12:00:00'),
         startingBid: 2000,
-        currentBid: null,
+        currentBid: 0,
         currentBidder: null,
-        imageUrl: "https://www.tiffany.com/jewelry/earrings/tiffany-soleste-v-earrings-GRP09923/",
+        imageUrl: "https://images.unsplash.com/photo-1588444650733-d0767b753fc8?q=80&w=898&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         category: categoryData[1],
         auctionFinished: false
     },
-
     {
         _id: new ObjectId(),
         title: "Diamond bracelet",
@@ -214,13 +205,12 @@ export const auctionData = [
         startDate: new Date('2024-04-01T12:00:00'),
         endDate: new Date('2024-04-30T12:00:00'),
         startingBid: 1500,
-        currentBid: null,
+        currentBid: 0,
         currentBidder: null,
-        imageUrl: "https://www.tiffany.com/jewelry/bracelets/tiffany-soleste-v-bracelet-GRP09923/",
+        imageUrl: "https://images.unsplash.com/photo-1573408301185-9146fe634ad0?q=80&w=875&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         category: categoryData[1],
         auctionFinished: false
     },
-
     {
         _id: new ObjectId(),
         title: "Sofa",
@@ -229,13 +219,12 @@ export const auctionData = [
         startDate: new Date('2024-04-01T12:00:00'),
         endDate: new Date('2024-04-30T12:00:00'),
         startingBid: 1000,
-        currentBid: null,
+        currentBid: 0,
         currentBidder: null,
-        imageUrl: "https://www.ikea.com/se/sv/p/klippan-2-sits-soffa-vissle-gra-30349147/",
+        imageUrl: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         category: categoryData[2],
         auctionFinished: false
     },
-
     {
         _id: new ObjectId(),
         title: "Dining table",
@@ -244,13 +233,12 @@ export const auctionData = [
         startDate: new Date('2024-04-01T12:00:00'),
         endDate: new Date('2024-04-30T12:00:00'),
         startingBid: 800,
-        currentBid: null,
+        currentBid: 0,
         currentBidder: null,
-        imageUrl: "https://www.ikea.com/se/sv/p/ekedalen-ekedalen-bord-och-4-stolar-vitt-70404843/",
+        imageUrl: "https://images.unsplash.com/photo-1615066390971-03e4e1c36ddf?q=80&w=1008&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         category: categoryData[2],
         auctionFinished: false
     },
-
     {
         _id: new ObjectId(),
         title: "Bed",
@@ -259,13 +247,12 @@ export const auctionData = [
         startDate: new Date('2024-04-01T12:00:00'),
         endDate: new Date('2024-04-30T12:00:00'),
         startingBid: 700,
-        currentBid: null,
+        currentBid: 0,
         currentBidder: null,
-        imageUrl: "https://www.ikea.com/se/sv/p/malm-sangstomme-hog-2-lador-vit-00277671/",
+        imageUrl: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         category: categoryData[2],
         auctionFinished: false
     },
-
     {
         _id: new ObjectId(),
         title: "Bookshelf",
@@ -274,9 +261,9 @@ export const auctionData = [
         startDate: new Date('2024-04-01T12:00:00'),
         endDate: new Date('2024-04-30T12:00:00'),
         startingBid: 500,
-        currentBid: null,
+        currentBid: 0,
         currentBidder: null,
-        imageUrl: "https://www.ikea.com/se/sv/p/billy-bokhylla-vit-00263850/",
+        imageUrl: "https://images.unsplash.com/photo-1593430980369-68efc5a5eb34?q=80&w=885&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         category: categoryData[2],
         auctionFinished: false
     },
@@ -289,13 +276,13 @@ export const auctionData = [
         startDate: new Date('2024-04-01T12:00:00'),
         endDate: new Date('2024-04-30T12:00:00'),
         startingBid: 300,
-        currentBid: null,
+        currentBid: 0,
         currentBidder: null,
-        imageUrl: "https://www.ikea.com/se/sv/p/ekedalen-ekedalen-bord-och-4-stolar-vitt-70404843/",
+        imageUrl: "https://images.unsplash.com/photo-1578653282816-a508bd2d0435?q=80&w=1006&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         category: categoryData[3],
         auctionFinished: false
     },
-
+    
     {
         _id: new ObjectId(),
         title: "Antique table",
@@ -304,13 +291,13 @@ export const auctionData = [
         startDate: new Date('2024-04-01T12:00:00'),
         endDate: new Date('2024-04-30T12:00:00'),
         startingBid: 200,
-        currentBid: null,
+        currentBid: 0,
         currentBidder: null,
-        imageUrl: "https://www.ikea.com/se/sv/p/ekedalen-ekedalen-bord-och-4-stolar-vitt-70404843/",
+        imageUrl: "https://images.unsplash.com/photo-1577926103605-f426874bee28?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         category: categoryData[3],
         auctionFinished: false
     },
-
+    
     {
         _id: new ObjectId(),
         title: "Antique vase",
@@ -319,13 +306,13 @@ export const auctionData = [
         startDate: new Date('2024-04-01T12:00:00'),
         endDate: new Date('2024-04-30T12:00:00'),
         startingBid: 100,
-        currentBid: null,
+        currentBid: 0,
         currentBidder: null,
-        imageUrl: "https://www.ikea.com/se/sv/p/ekedalen-ekedalen-bord-och-4-stolar-vitt-70404843/",
+        imageUrl: "https://images.unsplash.com/photo-1593265889290-4b41d8ad4680?q=80&w=688&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         category: categoryData[3],
         auctionFinished: false
     },
-
+    
     {
         _id: new ObjectId(),
         title: "Antique painting",
@@ -334,13 +321,13 @@ export const auctionData = [
         startDate: new Date('2024-04-01T12:00:00'),
         endDate: new Date('2024-04-30T12:00:00'),
         startingBid: 50,
-        currentBid: null,
+        currentBid: 0,
         currentBidder: null,
-        imageUrl: "https://www.ikea.com/se/sv/p/ekedalen-ekedalen-bord-och-4-stolar-vitt-70404843/",
+        imageUrl: "https://images.unsplash.com/photo-1576503918400-0b982e6a98bf?q=80&w=773&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         category: categoryData[3],
         auctionFinished: false
     },
-
+    
     {
         _id: new ObjectId(),
         title: "Harry Potter",
@@ -349,14 +336,13 @@ export const auctionData = [
         startDate: new Date('2024-04-01T12:00:00'),
         endDate: new Date('2024-04-30T12:00:00'),
         startingBid: 20,
-        currentBid: null,
+        currentBid: 0,
         currentBidder: null,
-        imageUrl: "https://www.ikea.com/se/sv/p/ekedalen-ekedalen-bord-och-4-stolar-vitt-70404843/",
+        imageUrl: "https://images.unsplash.com/photo-1626618012641-bfbca5a31239?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         category: categoryData[4],
         auctionFinished: false
-
     },
-
+    
     {
         _id: new ObjectId(),
         title: "The Lord of the Rings",
@@ -365,13 +351,13 @@ export const auctionData = [
         startDate: new Date('2024-04-01T12:00:00'),
         endDate: new Date('2024-04-30T12:00:00'),
         startingBid: 20,
-        currentBid: null,
+        currentBid: 0,
         currentBidder: null,
-        imageUrl: "https://www.ikea.com/se/sv/p/ekedalen-ekedalen-bord-och-4-stolar-vitt-70404843/",
+        imageUrl: "https://images.unsplash.com/photo-1618845072579-853968656c0e?q=80&w=1083&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         category: categoryData[4],
         auctionFinished: false
     },
-
+    
     {
         _id: new ObjectId(),
         title: "The Hobbit",
@@ -380,13 +366,13 @@ export const auctionData = [
         startDate: new Date('2024-04-01T12:00:00'),
         endDate: new Date('2024-04-30T12:00:00'),
         startingBid: 20,
-        currentBid: null,
+        currentBid: 0,
         currentBidder: null,
-        imageUrl: "https://www.ikea.com/se/sv/p/ekedalen-ekedalen-bord-och-4-stolar-vitt-70404843/",
+        imageUrl: "https://images.unsplash.com/photo-1613575363165-5a67fadc017c?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         category: categoryData[4],
         auctionFinished: false
     },
-
+    
     {
         _id: new ObjectId(),
         title: "The Great Gatsby",
@@ -395,9 +381,9 @@ export const auctionData = [
         startDate: new Date('2024-04-01T12:00:00'),
         endDate: new Date('2024-04-30T12:00:00'),
         startingBid: 20,
-        currentBid: null,
+        currentBid: 0,
         currentBidder: null,
-        imageUrl: "https://www.ikea.com/se/sv/p/ekedalen-ekedalen-bord-och-4-stolar-vitt-70404843/",
+        imageUrl: "https://images.unsplash.com/photo-1615413833480-6e8427dbcc5e?q=80&w=686&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         category: categoryData[4],
         auctionFinished: false
     },
@@ -410,13 +396,12 @@ export const auctionData = [
         startDate: new Date('2024-04-01T12:00:00'),
         endDate: new Date('2024-04-30T12:00:00'),
         startingBid: 20,
-        currentBid: null,
+        currentBid: 0,
         currentBidder: null,
-        imageUrl: "https://www.ikea.com/se/sv/p/ekedalen-ekedalen-bord-och-4-stolar-vitt-70404843/",
+        imageUrl: "https://images.unsplash.com/photo-1491841651911-c44c30c34548?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", // Placeholder image
         category: categoryData[4],
         auctionFinished: false
     },
-
 ];
 
 

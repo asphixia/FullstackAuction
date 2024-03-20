@@ -9,13 +9,13 @@ export const queries = {
     //get all auctions
     auctions: async () => {
 
-        const allAuctions = await AuctionModel.find();
+        const allAuctions = await AuctionModel.find().populate('seller').populate('category');
         return allAuctions;
     },
     //get auction by id
-    auction: async (id: string) => {
+    auction: async (_: any, {id}: ObjectId) => {
 
-        const auction = await AuctionModel.findById(id);
+        const auction = await AuctionModel.findById(id).populate('seller').populate('category');
         return auction;
 
     },

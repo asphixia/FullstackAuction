@@ -15,7 +15,7 @@ import UserModel from './model/user';
 import CategoryModel from './model/category';
 import AuctionModel from './model/auction';
 import { userData, auctionData, categoryData } from './data/data';
-
+import crypto from 'crypto';
 
 
 
@@ -29,10 +29,17 @@ mongoose
     })
     .catch((err: any) => console.log("Error connecting to MongoDB: ", err));  
 
-/*
 async function populateDB(){
+
     try{
-        await UserModel.create(userData);
+        const hashedUserData = userData.map(user => ({
+            ...user,
+            password: crypto.createHmac('sha256', process.env.secret_key!)
+                            .update(user.password)
+                            .digest('hex'),
+        }));
+
+        await UserModel.create(hashedUserData);
         await CategoryModel.create(categoryData);
         await AuctionModel.create(auctionData);
         console.log("Database populated");
@@ -40,7 +47,8 @@ async function populateDB(){
         console.log("Error populating database: ", err);
     }
 }
-*/
+
+
 
 async function startServer() {
     const app = express();

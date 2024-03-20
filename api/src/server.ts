@@ -25,11 +25,11 @@ mongoose
     .connect(DB)
     .then(async () => {
         console.log('Connected to MongoDB');
-        await populateDB();
+        //await populateDB();
     })
     .catch((err: any) => console.log("Error connecting to MongoDB: ", err));  
 
-
+/*
 async function populateDB(){
     try{
         await UserModel.create(userData);
@@ -40,6 +40,7 @@ async function populateDB(){
         console.log("Error populating database: ", err);
     }
 }
+*/
 
 async function startServer() {
     const app = express();

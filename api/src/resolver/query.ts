@@ -6,27 +6,27 @@ import { ObjectId } from 'mongodb';
 
 export const queries = {
 
-    //get all auctions
+    
     auctions: async () => {
 
         const allAuctions = await AuctionModel.find().populate('seller').populate('category');
         return allAuctions;
     },
-    //get auction by id
+    
     auction: async (_: any, {id}: ObjectId) => {
 
         const auction = await AuctionModel.findById(id).populate('seller').populate('category');
         return auction;
 
     },
-    //get auctions by category
+
     auctionsByCategory: async (categoryId: string) => {
 
         const category = await CategoryModel.findById(categoryId);
         return category;
 
     },
-    //get auctions by seller
+    
     auctionsBySeller: async (sellerId: string) => {
 
         const seller = await AuctionModel.find({ seller: sellerId });

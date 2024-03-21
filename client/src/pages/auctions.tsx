@@ -1,4 +1,3 @@
-// AuctionsPage.tsx
 import React, { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { useNavigate } from 'react-router-dom';
@@ -43,7 +42,7 @@ const AuctionsPage: React.FC = () => {
                 className="bg-brown-900 text-white font-bold py-2 px-4 rounded-lg mt-4"
                 onClick={() => {
                   console.log('Bid Now button clicked');
-                  navigate(`/auctions/${auction._id}`);
+                  navigate(`/login`, { state: { selectedAuction: auction } });
                 }}
               >
                 Bid Now

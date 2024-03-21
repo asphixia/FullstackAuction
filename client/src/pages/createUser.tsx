@@ -6,7 +6,6 @@ const CreateUserPage: React.FC = () => {
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    // Handle user creation logic here
     console.log(`Creating user with name: ${name} and email: ${email}`);
   };
 

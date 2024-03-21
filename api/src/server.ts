@@ -15,7 +15,8 @@ import UserModel from './model/user';
 import CategoryModel from './model/category';
 import AuctionModel from './model/auction';
 import { userData, auctionData, categoryData } from './data/data';
-import crypto from 'crypto';
+import bcrypt from 'bcrypt';
+
 
 
 
@@ -25,28 +26,36 @@ mongoose
     .connect(DB)
     .then(async () => {
         console.log('Connected to MongoDB');
-        //await populateDB();
+        await populateDB();
     })
     .catch((err: any) => console.log("Error connecting to MongoDB: ", err));  
 
-async function populateDB(){
-
-    try{
-        const hashedUserData = userData.map(user => ({
+async function populateDB() {
+    try {
+        const hashedUserData = await Promise.all(userData.map(async user => ({
             ...user,
-            password: crypto.createHmac('sha256', process.env.secret_key!)
-                            .update(user.password)
-                            .digest('hex'),
-        }));
+            password: await hashPassword(user.password),
+        })));
 
-        await UserModel.create(hashedUserData);
-        await CategoryModel.create(categoryData);
+        await UserModel.deleteMany({}); 
+        await UserModel.create(hashedUserData); 
+        await CategoryModel.deleteMany({});
+        await CategoryModel.create(categoryData); 
+        await AuctionModel.deleteMany({});
         await AuctionModel.create(auctionData);
-        console.log("Database populated");
-    } catch (err){
-        console.log("Error populating database: ", err);
+        console.log("Database populated successfully.");
+    } catch (err) {
+        console.error("Error populating database: ", err);
     }
 }
+
+async function hashPassword(plainTextPassword: string): Promise<string> {
+    const saltRounds = 10;
+    const hash = await bcrypt.hash(plainTextPassword, saltRounds);
+    return hash;
+}
+
+
 
 
 

@@ -1,22 +1,6 @@
 import { gql } from "@apollo/client";
 
-/*
-export interface IAuction extends Document {
-    _id: ObjectId;
-    title: string;
-    description: string;
-    seller: IUser;
-    startDate: Date;
-    endDate: Date;
-    startingBid: number;
-    currentBid: number;
-    currentBidder: IUser;
-    imageUrl: string;
-    category: ICategory;
-    auctionFinished: boolean;
-}
 
-*/
 
  const GET_ALL_AUCTION = gql`
     query Auctions {
@@ -36,11 +20,9 @@ export interface IAuction extends Document {
     }
     seller {
       _id
-      username
     }
     currentBidder {
       _id
-      username
     }
   }
 }
@@ -65,11 +47,9 @@ export const GET_AUCTION_BY_ID = gql`
     }
     currentBidder {
       _id
-      username
     }
     seller {
       _id
-      username
     }
   }
 }
@@ -110,21 +90,16 @@ export const DELETE_AUCTION = gql`
     }
 `;
 
-export const UPDATE_AUCTION = gql`
-    mutation updateAuction($id: ID!, $title: String, $description: String, $startDate: String, $endDate: String, $startingBid: Float, $imageUrl: String, $category: ID) {
-        updateAuction(id: $id, title: $title, description: $description, startDate: $startDate, endDate: $endDate, startingBid: $startingBid, imageUrl: $imageUrl, category: $category) {
-        id
-        title
-        description
-        seller
-        startDate
-        endDate
-        startingBid
-        imageUrl
-        category
-        auctionFinished
-        }
+export const UPDATE_AUCTION_CURRENT_BID_AND_CURRENT_BIDDER = gql`
+    mutation UpdateAuction($id: ID!, $input: UpdatedAuction) {
+  updateAuction(id: $id, input: $input) {
+    currentBid
+    currentBidder {
+      _id
     }
+  }
+    
+}
 `;
 
 export const GET_AUCTION_BY_CATEGORY = gql`

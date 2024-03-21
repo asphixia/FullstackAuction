@@ -1,4 +1,4 @@
-import { IAuction, ICategory, IUser } from "../types/types";
+import { IAuction, ICategory, IUser , IAuctionInput} from "../types/types";
 import { ObjectId } from "mongodb";
 import AuctionModel from "../model/auction";
 import UserModel from "../model/user";
@@ -11,7 +11,7 @@ dotenv.config({ path: "../process.env" });
 
 
 export const mutations = {
-    //create a new auction
+
     createAuction: async (_parent: any, args: IAuction) => {
         const newAuction = new AuctionModel({
             id: new ObjectId(),
@@ -34,7 +34,7 @@ export const mutations = {
         return result;
 
     },
-    //delete an auction
+    
     deleteAuction: async (_: any, {id}: ObjectId) => {
         if (await AuctionModel.findById(id)){
             const auction = await AuctionModel.findById(id);
@@ -44,23 +44,38 @@ export const mutations = {
         }
     }, 
 
-    //update an auction
-    updateAuction: async (_: any, args: IAuction) => {
-        const auction = await AuctionModel.findById(args.id);
-        if (auction){
-            auction.title = args.title;
-            auction.description = args.description;
-            auction.startDate = args.startDate;
-            auction.endDate = args.endDate;
-            auction.startingBid = args.startingBid;
-            auction.imageUrl = args.imageUrl;
-            auction.category = args.category;
-            auction.save();
-            return auction;
-        }
-    },
 
-    //create a new category
+    updateAuction: async (_: any, { id, input }: { id: string, input: IAuctionInput['input'] }) => {
+        try {
+
+            const currentBidder = await UserModel.findById(input.currentBidder);
+    if (!currentBidder) {
+      throw new Error('Current bidder not found');
+    }
+          const update = {
+            title: input.title,
+            description: input.description,
+            seller: input.seller,
+            startDate: input.startDate,
+            endDate: input.endDate,
+            startingBid: input.startingBid,
+            currentBid: input.currentBid,
+            currentBidder: currentBidder,
+            imageUrl: input.imageUrl,
+            category: input.category,
+            auctionFinished: input.auctionFinished,
+          };
+      
+          await AuctionModel.updateOne({ _id: id }, update);
+      
+          return await AuctionModel.findById(id);
+        } catch (error) {
+          console.error(error);
+          throw new Error('Failed to update auction');
+        }
+      },
+
+    
     createCategory: async (_: any, args: ICategory) => {
         const newCategory = new CategoryModel({
             id: new ObjectId(),
@@ -73,7 +88,7 @@ export const mutations = {
         return result;
     },
 
-    //delete a category
+    
     deleteCategory: async (_: any, {id}: ObjectId) => {
         if (await CategoryModel.findById(id)){
             const category = await CategoryModel.findById(id);
@@ -83,7 +98,7 @@ export const mutations = {
         }
     },
 
-    //update a category
+   
     updateCategory: async (_: any, args: ICategory) => {
         const category = await CategoryModel.findById(args.id);
         if (category){
@@ -94,7 +109,7 @@ export const mutations = {
         }
     },
 
-    //create a new user
+    
     createUser: async (_: any, args: IUser) => {
         const doesUserExist = await UserModel.findOne({username: args.username});
         if (doesUserExist){
@@ -120,7 +135,7 @@ export const mutations = {
 
     },
 
-    //delete a user
+    
     deleteUser: async (_: any, {id}: ObjectId) => {
         if(await UserModel.findById(id)){
             const user = await UserModel.findById(id);
@@ -129,7 +144,7 @@ export const mutations = {
             }
      },
 
-    //update a user
+
     updateUser: async (_: any, args: IUser) => {
         const user = await UserModel.findById(args.id);
         if (user){
@@ -141,7 +156,6 @@ export const mutations = {
         }
     },
 
-    //login a user
     login: async (_: any, args: IUser) => {
         const user = await UserModel.findOne({username: args.username});
 

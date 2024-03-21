@@ -52,9 +52,13 @@ export const UPDATE_USER = gql`
 `;
 
 export const LOGIN = gql`
-    mutation login($username: String!, $password: String!) {
-        login(username: $username, password: $password)
-    }
+    mutation Mutation($username: String!, $password: String!) {
+  login(username: $username, password: $password) {
+    _id
+    username
+    password
+  }
+}
 `;
 
 export const GET_USER_BY_USERNAME = gql`

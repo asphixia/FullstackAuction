@@ -29,6 +29,35 @@ const typeDefs = `#graphql
         role: Role!
         auctionsSelling: [Auction]
     }
+    input UpdatedAuction {
+    title: String
+    description: String
+    seller: ID
+    startDate: String
+    endDate: String
+    startingBid: Float
+    currentBid: Float
+    currentBidder: ID
+    imageUrl: String
+    category: ID
+    auctionFinished: Boolean
+}
+
+input UpdatedCategory {
+    name: String
+    description: String
+    auctions: [ID]
+}
+
+input UpdatedUser {
+    username: String
+    password: String
+    role: Role
+    auctionsSelling: [ID]
+}
+
+
+
 
     enum Role {
         ADMIN
@@ -49,16 +78,16 @@ const typeDefs = `#graphql
 
 
     type Mutation {
-        createAuction(title: String!, description: String!, startDate: String!, endDate: String!, startingBid: Float!, imageUrl: String!, category: ID!): Auction
-        deleteAuction(id: ID!): Auction
-        updateAuction(id: ID!, title: String, description: String, startDate: String, endDate: String, startingBid: Float, imageUrl: String, category: ID): Auction
-        createCategory(name: String!, description: String!): Category
-        deleteCategory(id: ID!): Category
-        updateCategory(id: ID!, name: String, description: String): Category
-        createUser(username: String!, password: String!, role: Role!): User
-        deleteUser(id: ID!): User
-        updateUser(id: ID!, username: String, password: String, role: Role): User
-        login(username: String!, password: String!): String
+        createAuction(title: String!, description: String!, startDate: String!, endDate: String!, startingBid: Float!, imageUrl: String!, category: ID!): Auction,
+        deleteAuction(id: ID!): Auction,
+        updateAuction(id: ID!, input: UpdatedAuction): Auction,
+        createCategory(name: String!, description: String!): Category,
+        deleteCategory(id: ID!): Category,
+        updateCategory(id: ID!, name: String, description: String): Category,
+        createUser(username: String!, password: String!, role: Role!): User,
+        deleteUser(id: ID!): User,
+        updateUser(id: ID!, username: String, password: String, role: Role): User,
+        login(username: String!, password: String!): User, 
     }
 
 

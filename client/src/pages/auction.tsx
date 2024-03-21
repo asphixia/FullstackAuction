@@ -1,14 +1,36 @@
-// AuctionPage.tsx
-import React from 'react';
-import { useParams } from 'react-router-dom';
-import { useQuery } from '@apollo/client';
-import { GET_AUCTION_BY_ID } from '../graphql/auctionGQL';
+import React, { useState } from 'react';
+import { useParams, useLocation } from 'react-router-dom';
+import { useQuery, useMutation } from '@apollo/client';
+import { GET_AUCTION_BY_ID, UPDATE_AUCTION_CURRENT_BID_AND_CURRENT_BIDDER } from '../graphql/auctionGQL';
 
 const AuctionPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
-  const { loading, error, data } = useQuery(GET_AUCTION_BY_ID, {
+  const location = useLocation() as { state: { selectedAuction: any, userId: string } };
+  const { loading, error, data, refetch } = useQuery(GET_AUCTION_BY_ID, {
     variables: { auctionId: id },
   });
+  const [updateAuction] = useMutation(UPDATE_AUCTION_CURRENT_BID_AND_CURRENT_BIDDER);
+  const [currentBid, setCurrentBid] = useState(0);
+
+  const handleBid = async () => {
+    console.log(`Current bid: ${currentBid}, Auction's current bid: ${data.auction.currentBid}`);
+    if (currentBid > data.auction.currentBid) {
+      try {
+        await updateAuction({
+          variables: {
+            id: data.auction._id,
+            input: {
+              currentBid,
+              currentBidder: location.state.userId,
+            },
+          },
+        });
+        refetch();
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  };
 
   if (loading) return <p>Loading...</p>;
   if (error) {
@@ -32,14 +54,15 @@ const AuctionPage: React.FC = () => {
           <div className="grid grid-cols-2 gap-4">
             <p>Starting Bid: <span className="font-bold">${auction.startingBid}</span></p>
             <p>Current Bid: <span className="font-bold">${auction.currentBid}</span></p>
-            <p>Seller: <span className="font-bold">{auction.seller.username}</span></p>
+            <p>Seller: <span className="font-bold">{auction.seller._id}</span></p>
             <p>Category: <span className="font-bold">{auction.category.name}</span></p>
             <p>End Date: <span className="font-bold">{new Date(auction.endDate).toLocaleString()}</span></p>
-            <p>Current Bidder: <span className="font-bold">{auction.currentBidder ? auction.currentBidder.username : 'None'}</span></p>
+            <p>Current Bidder: <span className="font-bold">{auction.currentBidder ? auction.currentBidder._id : 'No current bidder'}</span></p>
+            <input type="number" value={currentBid} onChange={e => setCurrentBid(Number(e.target.value))} />
+            <button onClick={handleBid} className="bg-brown-900 text-white font-bold py-2 px-4 rounded-lg mt-4">
+              Bid Now
+            </button>
           </div>
-          <button className="bg-brown-900 text-white font-bold py-2 px-4 rounded-lg mt-4">
-            Bid Now
-          </button>
         </div>
       </div>
     </div>

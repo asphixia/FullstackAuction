@@ -1,23 +1,25 @@
 
 
-export function clearToken(): void {
+ function clearToken(): void {
     window.localStorage.removeItem('token');
 
 }
-
-export function setToken(token: string): void {
+ function setToken(token: string): void {
     window.localStorage.setItem('token', token);
 }
 
-export function getToken(): string {
+ function getToken(): string {
     const token = window.localStorage.getItem('token');
     if(!token){
+        console.log('no token');
         return '';
     }
     return token;
 }
 
-export function isLoggedIn(): boolean {
+function isLoggedIn(): boolean {
     const token = getToken();
-    return !!token;
+    return window.localStorage.getItem('token') !== null;
 }
+
+export { clearToken, setToken, getToken, isLoggedIn };
